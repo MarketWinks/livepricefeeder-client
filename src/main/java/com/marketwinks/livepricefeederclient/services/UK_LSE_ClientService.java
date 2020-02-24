@@ -48,12 +48,9 @@ public class UK_LSE_ClientService {
 			e.printStackTrace();
 		}
 
-		while (urlList.size() > 0) {
 			for (int i = 0; i < urlList.size(); i++) {
 				UK_LSE_5Mins_ProcessorThread.process(urlList.get(i));
 			}
-
-			Thread.sleep(500);
-		}
+		
 	}
 }
