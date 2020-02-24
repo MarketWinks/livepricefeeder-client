@@ -19,8 +19,9 @@ public class UK_LSE_ClientService {
 	String serverURL = "https://livepricefeeder.herokuapp.com";
 
 	@RequestMapping(value = "/UK_LSE/5Mins/start", method = RequestMethod.GET)
-	public void findUK_LSE_5Mins_Price() throws InterruptedException, IOException {
+	public boolean findUK_LSE_5Mins_Price() throws InterruptedException, IOException {
 
+		boolean execution_result = false;
 		List<String> urlList = new ArrayList<String>();
 
 		try {
@@ -51,6 +52,9 @@ public class UK_LSE_ClientService {
 			for (int i = 0; i < urlList.size(); i++) {
 				UK_LSE_5Mins_ProcessorThread.process(urlList.get(i));
 			}
+			
+			execution_result=true;
+			return execution_result;
 		
 	}
 }
