@@ -18,7 +18,7 @@ public class UK_LSE_ClientService {
 
 	String serverURL = "https://livepricefeeder.herokuapp.com";
 
-	@RequestMapping(value = "/UK_LSE/5Mins/start", method = RequestMethod.GET)
+	@RequestMapping(value = "/UK_LSE/5Mins/PriceFeed/start", method = RequestMethod.GET)
 	public boolean findUK_LSE_5Mins_Price() throws InterruptedException, IOException {
 
 		boolean execution_result = false;
@@ -49,12 +49,52 @@ public class UK_LSE_ClientService {
 			e.printStackTrace();
 		}
 
-			for (int i = 0; i < urlList.size(); i++) {
-				UK_LSE_5Mins_ProcessorThread.process(urlList.get(i));
+		for (int i = 0; i < urlList.size(); i++) {
+			UK_LSE_5Mins_Price_ProcessorThread.process(urlList.get(i));
+		}
+
+		execution_result = true;
+		return execution_result;
+
+	}
+
+	@RequestMapping(value = "/UK_LSE/5Mins/MacdCalc/start", method = RequestMethod.GET)
+	public boolean calcUK_LSE_5Mins_Macd() throws InterruptedException, IOException {
+
+		boolean execution_result = false;
+		List<String> urlList = new ArrayList<String>();
+
+		try {
+			File file = new File("src/main/java/com/marketwinks/livepricefeederclient/services/uk_lse_symbols.txt");
+
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			try {
+				StringBuilder sb = new StringBuilder();
+				String line = br.readLine();
+
+				while (line != null) {
+
+					String macdurl = serverURL + "/uk_lse_5mins_livemarketmacd/calc/" + line.toString();
+
+					urlList.add(macdurl);
+
+					line = br.readLine();
+				}
+
+			} finally {
+				br.close();
 			}
-			
-			execution_result=true;
-			return execution_result;
-		
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < urlList.size(); i++) {
+			UK_LSE_5Mins_Macd_ProcessorThread.process(urlList.get(i));
+		}
+
+		execution_result = true;
+		return execution_result;
+
 	}
 }

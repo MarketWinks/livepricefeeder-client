@@ -7,7 +7,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-public class UK_LSE_5Mins_ProcessorThread {
+public class UK_LSE_5Mins_Price_ProcessorThread {
 
 	public static void process(String url) throws IOException, InterruptedException {
 
