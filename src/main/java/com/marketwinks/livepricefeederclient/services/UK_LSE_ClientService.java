@@ -74,7 +74,7 @@ public class UK_LSE_ClientService {
 
 				while (line != null) {
 
-					String macdurl = serverURL + "/uk_lse_5mins_livemarketmacd/" + line.toString() + "/calc";
+					String macdurl = "https://livemacdcalculator.herokuapp.com" + "/uk_lse_5mins_livemarketmacd/" + line.toString() + "/calc";
 
 					urlList.add(macdurl);
 
