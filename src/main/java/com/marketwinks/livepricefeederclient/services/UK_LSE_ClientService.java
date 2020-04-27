@@ -339,4 +339,250 @@ public class UK_LSE_ClientService {
 
 	}
 
+	@RequestMapping(value = "/UK_LSE/15Mins/MacdCalc/start", method = RequestMethod.GET)
+	public boolean calcUK_LSE_15Mins_Macd() throws InterruptedException, IOException {
+
+		boolean execution_result = false;
+		List<String> urlList = new ArrayList<String>();
+
+		try {
+			File file = new File("src/main/java/com/marketwinks/livepricefeederclient/services/uk_lse_symbols.txt");
+
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			try {
+				StringBuilder sb = new StringBuilder();
+				String line = br.readLine();
+
+				while (line != null) {
+
+					String macdurl = "https://livemacdcalculator.herokuapp.com" + "/uk_lse_15mins_livemarketmacd/"
+							+ line.toString() + "/calc";
+
+					urlList.add(macdurl);
+
+					line = br.readLine();
+				}
+
+			} finally {
+				br.close();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < urlList.size(); i++) {
+			UK_LSE_15Mins_Macd_ProcessorThread.process(urlList.get(i));
+		}
+
+		execution_result = true;
+		return execution_result;
+
+	}
+
+	@RequestMapping(value = "/UK_LSE/30Mins/MacdCalc/start", method = RequestMethod.GET)
+	public boolean calcUK_LSE_30Mins_Macd() throws InterruptedException, IOException {
+
+		boolean execution_result = false;
+		List<String> urlList = new ArrayList<String>();
+
+		try {
+			File file = new File("src/main/java/com/marketwinks/livepricefeederclient/services/uk_lse_symbols.txt");
+
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			try {
+				StringBuilder sb = new StringBuilder();
+				String line = br.readLine();
+
+				while (line != null) {
+
+					String macdurl = "https://livemacdcalculator.herokuapp.com" + "/uk_lse_30mins_livemarketmacd/"
+							+ line.toString() + "/calc";
+
+					urlList.add(macdurl);
+
+					line = br.readLine();
+				}
+
+			} finally {
+				br.close();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < urlList.size(); i++) {
+			UK_LSE_30Mins_Macd_ProcessorThread.process(urlList.get(i));
+		}
+
+		execution_result = true;
+		return execution_result;
+
+	}
+
+	@RequestMapping(value = "/UK_LSE/Hourly/MacdCalc/start", method = RequestMethod.GET)
+	public boolean calcUK_LSE_Hourly_Macd() throws InterruptedException, IOException {
+
+		boolean execution_result = false;
+		List<String> urlList = new ArrayList<String>();
+
+		try {
+			File file = new File("src/main/java/com/marketwinks/livepricefeederclient/services/uk_lse_symbols.txt");
+
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			try {
+				StringBuilder sb = new StringBuilder();
+				String line = br.readLine();
+
+				while (line != null) {
+
+					String macdurl = "https://livemacdcalculator.herokuapp.com" + "/uk_lse_hourly_livemarketmacd/"
+							+ line.toString() + "/calc";
+
+					urlList.add(macdurl);
+
+					line = br.readLine();
+				}
+
+			} finally {
+				br.close();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < urlList.size(); i++) {
+			UK_LSE_Hourly_Macd_ProcessorThread.process(urlList.get(i));
+		}
+
+		execution_result = true;
+		return execution_result;
+
+	}
+
+	@RequestMapping(value = "/UK_LSE/Daily/MacdCalc/start", method = RequestMethod.GET)
+	public boolean calcUK_LSE_Daily_Macd() throws InterruptedException, IOException {
+
+		boolean execution_result = false;
+		List<String> urlList = new ArrayList<String>();
+
+		try {
+			File file = new File("src/main/java/com/marketwinks/livepricefeederclient/services/uk_lse_symbols.txt");
+
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			try {
+				StringBuilder sb = new StringBuilder();
+				String line = br.readLine();
+
+				while (line != null) {
+
+					String macdurl = "https://livemacdcalculator.herokuapp.com" + "/uk_lse_daily_livemarketmacd/"
+							+ line.toString() + "/calc";
+
+					urlList.add(macdurl);
+
+					line = br.readLine();
+				}
+
+			} finally {
+				br.close();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < urlList.size(); i++) {
+			UK_LSE_Daily_Macd_ProcessorThread.process(urlList.get(i));
+		}
+
+		execution_result = true;
+		return execution_result;
+
+	}
+
+	@RequestMapping(value = "/UK_LSE/Weekly/MacdCalc/start", method = RequestMethod.GET)
+	public boolean calcUK_LSE_Weekly_Macd() throws InterruptedException, IOException {
+
+		boolean execution_result = false;
+		List<String> urlList = new ArrayList<String>();
+
+		try {
+			File file = new File("src/main/java/com/marketwinks/livepricefeederclient/services/uk_lse_symbols.txt");
+
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			try {
+				StringBuilder sb = new StringBuilder();
+				String line = br.readLine();
+
+				while (line != null) {
+
+					String macdurl = "https://livemacdcalculator.herokuapp.com" + "/uk_lse_weekly_livemarketmacd/"
+							+ line.toString() + "/calc";
+
+					urlList.add(macdurl);
+
+					line = br.readLine();
+				}
+
+			} finally {
+				br.close();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < urlList.size(); i++) {
+			UK_LSE_Weekly_Macd_ProcessorThread.process(urlList.get(i));
+		}
+
+		execution_result = true;
+		return execution_result;
+
+	}
+
+	@RequestMapping(value = "/UK_LSE/Monthly/MacdCalc/start", method = RequestMethod.GET)
+	public boolean calcUK_LSE_Monthly_Macd() throws InterruptedException, IOException {
+
+		boolean execution_result = false;
+		List<String> urlList = new ArrayList<String>();
+
+		try {
+			File file = new File("src/main/java/com/marketwinks/livepricefeederclient/services/uk_lse_symbols.txt");
+
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			try {
+				StringBuilder sb = new StringBuilder();
+				String line = br.readLine();
+
+				while (line != null) {
+
+					String macdurl = "https://livemacdcalculator.herokuapp.com" + "/uk_lse_monthly_livemarketmacd/"
+							+ line.toString() + "/calc";
+
+					urlList.add(macdurl);
+
+					line = br.readLine();
+				}
+
+			} finally {
+				br.close();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < urlList.size(); i++) {
+			UK_LSE_Monthly_Macd_ProcessorThread.process(urlList.get(i));
+		}
+
+		execution_result = true;
+		return execution_result;
+
+	}
+
 }
